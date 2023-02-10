@@ -11,34 +11,60 @@ module.exports = plop => {
         // Prompt to display on command line
         message: "What is your component name?",
       },
-    ],
-    actions: [
       {
-        // Add a new file
-        type: "add",
-        // Path for the new file
-        path: "src/Components/{{pascalCase name}}/index.tsx",
-        // Handlebars template used to generate content of new file
-        templateFile: "plop-templates/Component/Component.ts.hbs",
-      },
-      {
-        type: "add",
-        path: "src/components/{{pascalCase name}}/{{pascalCase name}}.test.ts",
-        templateFile: "plop-templates/Component/Component.test.ts.hbs",
-      },
-      {
-        type: "add",
-        path:
-          "src/components/{{pascalCase name}}/{{pascalCase name}}.module.scss",
-        templateFile: "plop-templates/Component/Component.module.scss.hbs",
-      },
-      {
-        type: "add",
-        path:
-          "src/components/{{pascalCase name}}/{{pascalCase name}}.stories.tsx",
-        templateFile: "plop-templates/Component/Component.stories.tsx.hbs",
+        // Raw text input
+        type: "confirm",
+        // Variable name for this input
+        name: "isBasic",
+        // Prompt to display on command line
+        message: "Is it basic component?",
       },
     ],
+    actions: data => {
+      const path = data.isBasic ? "src/Components/Basic" : "src/Components";
+      const exportConfit = data.isBasic
+        ? {
+            type: "append",
+            path: `${path}/index.ts`,
+            pattern: `/* ADD_BASIC_COMPONENT_EXPORT_HERE */`,
+            template: `export { {{pascalCase name}} } from "./{{pascalCase name}}";`,
+          }
+        : {
+            type: "append",
+            path: `${path}/index.ts`,
+            pattern: `/* ADD_COMPONENT_EXPORT_HERE */`,
+            template: `export { {{pascalCase name}} } from "@Components/{{pascalCase name}}";`,
+          };
+
+      const actions = [
+        {
+          // Add a new file
+          type: "add",
+          // Path for the new file
+          path: `${path}/{{pascalCase name}}/index.tsx`,
+          // Handlebars template used to generate content of new file
+          templateFile: "plop-templates/Component/Component.ts.hbs",
+        },
+        {
+          type: "add",
+          path: `${path}/{{pascalCase name}}/{{pascalCase name}}.test.ts`,
+          templateFile: "plop-templates/Component/Component.test.ts.hbs",
+        },
+        {
+          type: "add",
+          path: `${path}/{{pascalCase name}}/styles.module.scss`,
+          templateFile: "plop-templates/Component/Component.module.scss.hbs",
+        },
+        {
+          type: "add",
+          path: `${path}/{{pascalCase name}}/{{pascalCase name}}.stories.tsx`,
+          templateFile: "plop-templates/Component/Component.stories.tsx.hbs",
+        },
+        exportConfit,
+      ];
+
+      return actions;
+    },
   });
   plop.setGenerator("page", {
     description: "Create a page",
