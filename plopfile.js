@@ -85,4 +85,58 @@ module.exports = plop => {
       },
     ],
   });
+  plop.setGenerator("service", {
+    description: "Create (api) service",
+    prompts: [
+      {
+        type: "input",
+        name: "name",
+        message: "What is your service name?",
+      },
+    ],
+    actions: [
+      {
+        type: "add",
+        path:
+          "src/Services/API/{{pascalCase name}}/{{pascalCase name}}Payload.d.ts",
+        templateFile: "plop-templates/service/payload.ts.hbs",
+      },
+      {
+        type: "add",
+        path:
+          "src/Services/API/{{pascalCase name}}/{{pascalCase name}}Response.d.ts",
+        templateFile: "plop-templates/service/response.ts.hbs",
+      },
+      {
+        type: "add",
+        path: "src/Services/API/{{pascalCase name}}/index.spec.ts",
+        templateFile: "plop-templates/service/test.ts.hbs",
+      },
+      {
+        type: "add",
+        path: "src/Services/API/{{pascalCase name}}/index.ts",
+        templateFile: "plop-templates/service/index.ts.hbs",
+      },
+      {
+        type: "add",
+        path: "src/Services/API/{{pascalCase name}}/{{pascalCase name}}.d.ts",
+        templateFile: "plop-templates/service/model.ts.hbs",
+      },
+      {
+        type: "append",
+        path: "src/Services/index.ts",
+        pattern: `/* EXPORT_SERVICE_HERE */`,
+        template: `export { {{pascalCase name}}Service } from '@Services/API/{{pascalCase name}}';`,
+      },
+      {
+        type: "append",
+        path: "src/Interfaces/index.ts",
+        pattern: `/* EXPORT_SERVICE_DETAILS_HERE */`,
+        template: `export * from "@Services/API/{{pascalCase name}}/{{pascalCase name}}Payload";
+export * from "@Services/API/{{pascalCase name}}/{{pascalCase name}}Response";
+export * from "@Services/API/{{pascalCase name}}/{{pascalCase name}}";
+`,
+      },
+    ],
+  });
 };

@@ -1,0 +1,13 @@
+// #region Interface Imports
+import { {{pascalCase name}}Payload, {{pascalCase name}}Response } from "@Interfaces";
+// #endregion Interface Imports
+
+declare namespace {{pascalCase name}}Model {
+    export interface Get{{pascalCase name}}Payload {
+        params: {{pascalCase name}}Payload;
+    }
+
+    export interface Get{{pascalCase name}}Response extends {{pascalCase name}}Response {}
+}
+
+export { {{pascalCase name}}Model };
