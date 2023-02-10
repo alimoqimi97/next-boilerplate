@@ -1,0 +1,21 @@
+// #region Local Imports
+import { {{pascalCase name}}Service } from "@Services";
+// #endregion Local Imports
+
+describe("{{pascalCase name}} tests", () => {
+    test("200 test", async () => {
+        {{!-- GET test example:  --}}
+        const result = await {{pascalCase name}}Service.GetPlanetImage({
+            params: { hd: true },
+        });
+        expect(result.copyright).toEqual("Pankod");
+    });
+
+    test("500 test", async () => {
+        {{!-- Get test example:  --}}
+        const result = await {{pascalCase name}}Service.GetPlanetImage({
+            params: { hd: false },
+        });
+        expect(result.copyright).toEqual("");
+    });
+});

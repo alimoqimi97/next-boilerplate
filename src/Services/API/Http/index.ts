@@ -10,7 +10,7 @@ import { HttpModel } from "@Interfaces";
 const BaseUrl = `${process.env.NEXT_PUBLIC_API_URL}/api`;
 export const Http = {
     Request: async <A>(
-        methodType: string,
+        methodType: "GET" | "POST" | "PUT" | "DELETE",
         url: string,
         params?: HttpModel.IRequestQueryPayload,
         payload?: HttpModel.IRequestPayload
