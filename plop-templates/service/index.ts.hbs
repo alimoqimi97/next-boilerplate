@@ -1,0 +1,36 @@
+// #region Local Imports
+import { Http } from "@Services";
+// #endregion Local Imports
+
+// #region Interface Imports
+import { {{pascalCase name}}Model } from "@Interfaces";
+// #endregion Interface Imports
+
+export const {{pascalCase name}}Service = {
+    // GET method example: 
+    GetPlanetImage: async (
+        payload: {{pascalCase name}}Model.Get{{pascalCase name}}Payload
+    ): Promise<{{pascalCase name}}Model.Get{{pascalCase name}}Response> => {
+        let response: {{pascalCase name}}Model.Get{{pascalCase name}}Response;
+
+        try {
+            response = await Http.Request<{{pascalCase name}}Model.Get{{pascalCase name}}Response>(
+                "GET",
+                "/planetary/apod",
+                payload.params
+            );
+        } catch (error) {
+            response = {
+                copyright: "",
+                date: "",
+                explanation: "",
+                hdurl: "",
+                service_version: "",
+                title: "",
+                url: "",
+            };
+        }
+
+        return response;
+    },
+};
