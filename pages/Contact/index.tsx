@@ -4,16 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { withTranslation } from "@Server/i18n";
 import { IStore } from "@Redux/IStore";
-import { AboutActions } from "@Actions";
+import { ContactActions } from "@Actions";
 import { Heading, LocaleButton } from "@Components";
 
-import { IAbout, ReduxNextPageContext } from "@Interfaces";
+import { IContact, ReduxNextPageContext } from "@Interfaces";
 
-const About: NextPage<IAbout.IProps, IAbout.InitialProps> = ({
+const Contact: NextPage<IContact.IProps, IContact.InitialProps> = ({
     t,
     i18n,
 }) => {
-    const About = useSelector((state: IStore) => state.About);
+    const contact = useSelector((state: IStore) => state.contact);
     const dispatch = useDispatch();
 
     const renderLocaleButtons = (activeLanguage: string) =>
@@ -33,17 +33,17 @@ const About: NextPage<IAbout.IProps, IAbout.InitialProps> = ({
     );
 };
 
-About.getInitialProps = async (
+Contact.getInitialProps = async (
     ctx: ReduxNextPageContext
-): Promise<IAbout.InitialProps> => {
+): Promise<IContact.InitialProps> => {
     await ctx.store.dispatch(
-        AboutActions.GetApod({
+        ContactActions.GetApod({
             params: { hd: true },
         })
     );
     return { namespacesRequired: ["common"] };
 };
 
-const Extended = withTranslation("common")(About);
+const Extended = withTranslation("common")(Contact);
 
 export default Extended;
