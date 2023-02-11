@@ -90,7 +90,13 @@ module.exports = plop => {
         type: "append",
         path: "src/Redux/IStore.d.ts",
         pattern: `/* Add_Page_IStore_Here */`,
-        template: "plop-templates/Page/IStore.ts.hbs",
+        template: "{{camelCase name}}: I{{pascalCase name}}.IStateProps;",
+      },
+      {
+        type: "append",
+        path: "src/Interfaces/index.ts",
+        pattern: `/* ADD_PAGE_INTERFACE_EXPORT_HERE */`,
+        template: `export * from "@Interfaces/Pages/{{pascalCase name}}";`,
       },
     ],
   });

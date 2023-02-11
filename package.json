@@ -1,9 +1,9 @@
 {
-  "name": "@pankod/next-boilerplate",
-  "description": "A well-structured production ready Next.js boilerplate with Typescript, Redux, Jest, React Testing Library, Express.js, Sass, Css, EnvConfig, Fetch, Reverse Proxy, Bundle Analyzer and Built-in Project CLI. https://pankod.github.io/next-boilerplate/",
+  "name": "@alimoghimi/next-boilerplate",
+  "description": "A well-structured production ready Next.js boilerplate with Typescript, Redux, Jest, React Testing Library, Express.js, Sass, Css, EnvConfig, Fetch, Reverse Proxy, Bundle Analyzer and Built-in Project CLI. https://github.com/alimoqimi97/next-boilerplate",
   "version": "2.0.0",
-  "repository": "https://github.com/pankod/next-boilerplate",
-  "author": "Pankod <info@pankod.com>",
+  "repository": "https://github.com/alimoqimi97/next-boilerplate",
+  "author": "alimoghimi",
   "scripts": {
     "start:dev": "nodemon",
     "build": "next build && tsc --project tsconfig.server.json",

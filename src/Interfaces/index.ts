@@ -2,6 +2,7 @@
 export * from "@Interfaces/Pages/Home";
 export * from "@Interfaces/Pages/App";
 export * from "@Interfaces/Pages/Error";
+/* ADD_PAGE_INTERFACE_EXPORT_HERE */
 // #endregion Page Interfaces
 
 // #region Redux Interfaces
